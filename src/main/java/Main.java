@@ -19,6 +19,9 @@ public class Main {
         FreemarkerPageTest freemarkerPageTest=new FreemarkerPageTest();
         context.addServlet(new ServletHolder(freemarkerPageTest),"/freemarkerPageTest");
 
+        MirrorServlet mirrorServlet=new MirrorServlet();
+        context.addServlet(new ServletHolder(mirrorServlet),"/mirror");
+
         server.start();
         server.join();
 
