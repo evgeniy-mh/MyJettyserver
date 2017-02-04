@@ -7,14 +7,17 @@ import org.eclipse.jetty.servlet.ServletHolder;
  */
 public class Main {
     public static void main(String[] args) throws  Exception{
-        Frontend frontend= new Frontend();
 
-        Server server=new Server(8080);
+        Server server=new Server(8080); //jetty сервер, его порт
         ServletContextHandler context=
                 new ServletContextHandler(ServletContextHandler.SESSIONS);
-
         server.setHandler(context);
-        context.addServlet(new ServletHolder(frontend), "/authform");
+
+        staticPageTest staticPageTest = new staticPageTest(); //то что будет обрабатывать запросы(сервлет)
+        context.addServlet(new ServletHolder(staticPageTest), "/pageTest");
+
+        FreemarkerPageTest freemarkerPageTest=new FreemarkerPageTest();
+        context.addServlet(new ServletHolder(freemarkerPageTest),"/freemarkerPageTest");
 
         server.start();
         server.join();
